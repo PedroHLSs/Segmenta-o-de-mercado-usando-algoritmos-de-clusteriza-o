@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Resultados — Recomendador de Jogos</title>
+    <link rel="stylesheet" th:href="@{/style.css}" href="/style.css" />
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>🎯 Recomendação Gerada</h1>
+        <p class="subtitle">Aqui estão as sugestões baseadas no seu perfil</p>
+    </header>
+
+    <main>
+        <div class="result-card">
+            <h2 th:text="${resultado.grupo}">Grupo</h2>
+            <p class="muted" th:text="${resultado.descricao}">Descrição do grupo</p>
+
+            <h3>Jogos recomendados</h3>
+            <ul class="games-list">
+                <li th:each="jogo : ${resultado.jogosIndicados}" th:text="${jogo}">Nome do Jogo</li>
+            </ul>
+
+            <div class="back">
+                <a class="btn" th:href="@{/games/form}">Voltar</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <small>Resultado gerado pelo modelo K-means (PMML)</small>
+    </footer>
+</div>
+</body>
+</html>

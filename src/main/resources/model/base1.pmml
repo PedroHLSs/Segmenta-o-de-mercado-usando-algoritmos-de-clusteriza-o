@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PMML version="4.2" xmlns="http://www.dmg.org/PMML-4_2">
+  <Header copyright="phlop">
+    <Application name="KNIME" version="5.7.0"/>
+  </Header>
+  <DataDictionary numberOfFields="20">
+    <DataField name="Rank" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="Platform" optype="categorical" dataType="string">
+      <Value value="Wii"/>
+      <Value value="NES"/>
+      <Value value="GB"/>
+      <Value value="DS"/>
+      <Value value="X360"/>
+      <Value value="PS3"/>
+      <Value value="PS2"/>
+      <Value value="SNES"/>
+      <Value value="GBA"/>
+      <Value value="3DS"/>
+      <Value value="PS4"/>
+      <Value value="N64"/>
+      <Value value="PS"/>
+      <Value value="XB"/>
+      <Value value="PC"/>
+      <Value value="2600"/>
+      <Value value="PSP"/>
+      <Value value="XOne"/>
+      <Value value="GC"/>
+      <Value value="WiiU"/>
+      <Value value="GEN"/>
+      <Value value="DC"/>
+      <Value value="PSV"/>
+      <Value value="SAT"/>
+      <Value value="SCD"/>
+      <Value value="WS"/>
+      <Value value="NG"/>
+      <Value value="TG16"/>
+      <Value value="3DO"/>
+      <Value value="GG"/>
+      <Value value="PCFX"/>
+    </DataField>
+    <DataField name="Year" optype="categorical" dataType="string">
+      <Value value="2006"/>
+      <Value value="1985"/>
+      <Value value="2008"/>
+      <Value value="2009"/>
+      <Value value="1996"/>
+      <Value value="1989"/>
+      <Value value="1984"/>
+      <Value value="2005"/>
+      <Value value="1999"/>
+      <Value value="2007"/>
+      <Value value="2010"/>
+      <Value value="2013"/>
+      <Value value="2004"/>
+      <Value value="1990"/>
+      <Value value="1988"/>
+      <Value value="2002"/>
+      <Value value="2001"/>
+      <Value value="2011"/>
+      <Value value="1998"/>
+      <Value value="2015"/>
+      <Value value="2012"/>
+      <Value value="2014"/>
+      <Value value="1992"/>
+      <Value value="1997"/>
+      <Value value="1993"/>
+      <Value value="1994"/>
+      <Value value="1982"/>
+      <Value value="2003"/>
+      <Value value="1986"/>
+      <Value value="2000"/>
+      <Value value="N/A"/>
+      <Value value="1995"/>
+      <Value value="2016"/>
+      <Value value="1991"/>
+      <Value value="1981"/>
+      <Value value="1987"/>
+      <Value value="1980"/>
+      <Value value="1983"/>
+      <Value value="2020"/>
+      <Value value="2017"/>
+    </DataField>
+    <DataField name="NA_Sales" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="EU_Sales" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="JP_Sales" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="Other_Sales" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="Global_Sales" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="Sports" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="Platform (#1)" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="Racing" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="Role-Playing" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="Puzzle" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="Misc" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="Shooter" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="Simulation" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="Action" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="Fighting" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="Adventure" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+    <DataField name="Strategy" optype="continuous" dataType="double">
+      <Interval closure="closedClosed" leftMargin="0.0" rightMargin="1.0"/>
+    </DataField>
+  </DataDictionary>
+  <ClusteringModel modelName="k-means" functionName="clustering" modelClass="centerBased" numberOfClusters="6">
+    <MiningSchema>
+      <MiningField name="Global_Sales" invalidValueTreatment="asIs"/>
+      <MiningField name="Sports" invalidValueTreatment="asIs"/>
+      <MiningField name="Racing" invalidValueTreatment="asIs"/>
+      <MiningField name="Role-Playing" invalidValueTreatment="asIs"/>
+      <MiningField name="Puzzle" invalidValueTreatment="asIs"/>
+      <MiningField name="Misc" invalidValueTreatment="asIs"/>
+      <MiningField name="Shooter" invalidValueTreatment="asIs"/>
+      <MiningField name="Simulation" invalidValueTreatment="asIs"/>
+      <MiningField name="Action" invalidValueTreatment="asIs"/>
+      <MiningField name="Fighting" invalidValueTreatment="asIs"/>
+      <MiningField name="Adventure" invalidValueTreatment="asIs"/>
+      <MiningField name="Strategy" invalidValueTreatment="asIs"/>
+    </MiningSchema>
+    <ComparisonMeasure kind="distance">
+      <squaredEuclidean/>
+    </ComparisonMeasure>
+    <ClusteringField field="Global_Sales" compareFunction="absDiff"/>
+    <ClusteringField field="Sports" compareFunction="absDiff"/>
+    <ClusteringField field="Racing" compareFunction="absDiff"/>
+    <ClusteringField field="Role-Playing" compareFunction="absDiff"/>
+    <ClusteringField field="Puzzle" compareFunction="absDiff"/>
+    <ClusteringField field="Misc" compareFunction="absDiff"/>
+    <ClusteringField field="Shooter" compareFunction="absDiff"/>
+    <ClusteringField field="Simulation" compareFunction="absDiff"/>
+    <ClusteringField field="Action" compareFunction="absDiff"/>
+    <ClusteringField field="Fighting" compareFunction="absDiff"/>
+    <ClusteringField field="Adventure" compareFunction="absDiff"/>
+    <ClusteringField field="Strategy" compareFunction="absDiff"/>
+    <Cluster name="cluster_0" size="517">
+      <Array n="12" type="real">0.1241953016533202 0.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 0.0 </Array>
+    </Cluster>
+    <Cluster name="cluster_1" size="795">
+      <Array n="12" type="real">0.09374898123879287 1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </Array>
+    </Cluster>
+    <Cluster name="cluster_2" size="1625">
+      <Array n="12" type="real">0.105933372545958 0.0 0.24307692307692308 0.0 0.0756923076923077 0.0 0.0 0.144 0.0 0.1686153846153846 0.07938461538461539 0.06646153846153846 </Array>
+    </Cluster>
+    <Cluster name="cluster_3" size="446">
+      <Array n="12" type="real">0.09829154988510556 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 0.0 0.0 </Array>
+    </Cluster>
+    <Cluster name="cluster_4" size="1046">
+      <Array n="12" type="real">0.09894820295829529 0.0 0.0 0.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 </Array>
+    </Cluster>
+    <Cluster name="cluster_5" size="448">
+      <Array n="12" type="real">0.11924131201163042 0.0 0.0 1.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 0.0 </Array>
+    </Cluster>
+  </ClusteringModel>
+</PMML>

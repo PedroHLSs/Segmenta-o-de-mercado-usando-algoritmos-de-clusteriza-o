@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Recomendador de Jogos</title>
+    <link rel="stylesheet" th:href="@{/style.css}" href="/style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🎮 Recomendador de Jogos</h1>
+            <p class="subtitle">Insira as características do perfil para receber recomendações</p>
+        </header>
+
+        <main>
+            <div class="card">
+                <form th:action="@{/games/calcular}" th:object="${dto}" method="post" id="gamesForm">
+                    <div class="grid">
+                        <div class="form-field">
+                            <label for="globalSales">Global Sales</label>
+                            <input type="number" step="0.0001" th:field="*{globalSales}" id="globalSales"
+                                placeholder="Ex: 0.12" required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="sports">Sports</label>
+                            <input type="number" step="0.01" th:field="*{sports}" id="sports" placeholder="0 ou 1"
+                                required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="racing">Racing</label>
+                            <input type="number" step="0.01" th:field="*{racing}" id="racing" placeholder="0 ou 1"
+                                required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="rolePlaying">Role-Playing</label>
+                            <input type="number" step="0.01" th:field="*{rolePlaying}" id="rolePlaying"
+                                placeholder="0 ou 1" required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="puzzle">Puzzle</label>
+                            <input type="number" step="0.01" th:field="*{puzzle}" id="puzzle" placeholder="0 ou 1"
+                                required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="misc">Misc</label>
+                            <input type="number" step="0.01" th:field="*{misc}" id="misc" placeholder="0 ou 1"
+                                required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="shooter">Shooter</label>
+                            <input type="number" step="0.01" th:field="*{shooter}" id="shooter" placeholder="0 ou 1"
+                                required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="simulation">Simulation</label>
+                            <input type="number" step="0.01" th:field="*{simulation}" id="simulation"
+                                placeholder="0 ou 1" required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="action">Action</label>
+                            <input type="number" step="0.01" th:field="*{action}" id="action" placeholder="0 ou 1"
+                                required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="fighting">Fighting</label>
+                            <input type="number" step="0.01" th:field="*{fighting}" id="fighting" placeholder="0 ou 1"
+                                required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="adventure">Adventure</label>
+                            <input type="number" step="0.01" th:field="*{adventure}" id="adventure" placeholder="0 ou 1"
+                                required />
+                        </div>
+
+                        <div class="form-field">
+                            <label for="strategy">Strategy</label>
+                            <input type="number" step="0.01" th:field="*{strategy}" id="strategy" placeholder="0 ou 1"
+                                required />
+                        </div>
+                    </div>
+
+                    <div class="actions">
+                        <button type="submit" class="btn">Gerar Recomendações</button>
+                        <a class="link-secondary" th:href="@{/games/form}">Limpar</a>
+                    </div>
+                </form>
+            </div>
+        </main>
+
+        <footer>
+            <small>Feito por Pedro Henrique Lopes Silva • Sistema de Recomendação de Jogos</small>
+        </footer>
+    </div>
+</body>
+
+</html>

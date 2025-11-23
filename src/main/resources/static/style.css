@@ -1,0 +1,117 @@
+/* src/main/resources/static/css/style.css */
+:root{
+    --bg: #f6f8fa;
+    --card: #ffffff;
+    --accent: #2b7a78;
+    --muted: #6b7280;
+    --btn: #11999e;
+    --btn-hover: #0e7b78;
+    --shadow: 0 6px 18px rgba(13,18,26,0.08);
+    --radius: 12px;
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+*{box-sizing: border-box}
+body{
+    margin:0;
+    background:var(--bg);
+    color:#0f172a;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+}
+
+.container{
+    max-width:1100px;
+    margin:36px auto;
+    padding:24px;
+}
+
+header{
+    margin-bottom:18px;
+}
+h1{margin:0;font-size:28px}
+.subtitle{color:var(--muted);margin-top:6px}
+
+.card{
+    background:var(--card);
+    padding:18px;
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    margin-bottom:18px;
+}
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:12px;
+}
+
+.form-field{display:flex;flex-direction:column}
+.form-field label{font-size:13px;color:var(--muted);margin-bottom:6px}
+.form-field input[type=number], .form-field input[type=text]{
+    padding:10px 12px;
+    border-radius:10px;
+    border:1px solid #e6e9ee;
+    outline:none;
+    font-size:14px;
+    background:#fbfcfd;
+}
+.form-field input:focus{box-shadow:0 6px 18px rgba(17,153,158,0.08);border-color:var(--btn)}
+
+.actions{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin-top:16px;
+}
+
+.btn{
+    background:var(--btn);
+    color:white;
+    padding:10px 16px;
+    border-radius:10px;
+    border:0;
+    cursor:pointer;
+    font-weight:600;
+    text-decoration:none;
+}
+.btn:hover{background:var(--btn-hover)}
+
+.link-secondary{
+    color:var(--accent);
+    text-decoration:none;
+    font-weight:600;
+}
+
+.info{
+    margin-top:14px;
+    background:linear-gradient(180deg,#ffffff,#fbfbfb);
+    padding:14px;
+    border-radius:12px;
+    box-shadow:var(--shadow);
+    color:var(--muted);
+}
+
+.result-card{
+    background:var(--card);
+    padding:20px;
+    border-radius:12px;
+    box-shadow:var(--shadow);
+}
+
+.games-list{list-style:none;padding:0;margin:0}
+.games-list li{
+    padding:10px 12px;
+    border-radius:10px;
+    border:1px solid #eef2f6;
+    margin-bottom:10px;
+    background:#fff;
+}
+
+.back{margin-top:14px}
+.muted{color:var(--muted)}
+footer{
+    margin-top:36px;
+    text-align:center;
+    color:var(--muted);
+}
