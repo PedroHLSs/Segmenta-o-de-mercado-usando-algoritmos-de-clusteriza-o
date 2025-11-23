@@ -1,18 +1,26 @@
 package com.example.trabalho2_in.services;
 import java.io.FileInputStream;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
+import java.util.stream.Collectors;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.trabalho2_in.dtos.GameCalcularDto;
 import com.example.trabalho2_in.dtos.GameRecomendacao;
+import com.example.trabalho2_in.models.Game;
 
 import org.pmml4s.model.Model;
 
 @Service
 public class GameService {
+
+    @Autowired
+    private ExcelReaderService excelReaderService;
 
     public GameRecomendacao calcular(GameCalcularDto dto) {
         Map<String, Object> saidaModelo = null;
@@ -57,6 +65,79 @@ public class GameService {
 
         System.out.println("Cluster identificado: " + cluster);
 
+        // Buscar jogos do mesmo cluster no Excel
+        List<Game> jogosDoCluster = excelReaderService.buscarPorCluster(cluster);
+        
+        if (jogosDoCluster.isEmpty()) {
+            System.out.println("⚠️ Nenhum jogo encontrado para o cluster: " + cluster);
+            return getFallbackRecomendacao(cluster);
+        }
+        
+        System.out.println("📊 " + jogosDoCluster.size() + " jogos encontrados no cluster " + cluster);
+        
+        // Calcular similaridade para todos os jogos
+        Map<Game, Double> similaridades = new HashMap<>();
+        for (Game game : jogosDoCluster) {
+            similaridades.put(game, calcularSimilaridade(dto, game));
+        }
+        
+        // Pegar top 20 mais similares
+        List<Game> topJogos = similaridades.entrySet().stream()
+            .sorted((e1, e2) -> Double.compare(e2.getValue(), e1.getValue()))
+            .limit(20) // Pega os 20 melhores
+            .map(Map.Entry::getKey)
+            .collect(Collectors.toList());
+        
+        // Embaralhar para adicionar aleatoriedade
+        Collections.shuffle(topJogos, new Random());
+        
+        // Pegar apenas 10 (agora aleatórios entre os 20 melhores)
+        List<String> jogosRecomendados = topJogos.stream()
+            .limit(10)
+            .map(Game::getName)
+            .toList();
+        
+        System.out.println("🎮 Recomendando " + jogosRecomendados.size() + " jogos aleatórios entre os top 20 mais similares");
+        
+        String descricao = getDescricaoCluster(cluster);
+        String texto = getTextoDescricao(cluster);
+        
+        return new GameRecomendacao(descricao, texto, jogosRecomendados);
+    }
+    
+    private double calcularSimilaridade(GameCalcularDto dto, Game game) {
+        // Distância euclidiana entre o perfil do usuário e o jogo
+        double distancia = Math.sqrt(
+            Math.pow(dto.getSports() - game.getSports(), 2) +
+            Math.pow(dto.getRacing() - game.getRacing(), 2) +
+            Math.pow(dto.getRolePlaying() - game.getRolePlaying(), 2) +
+            Math.pow(dto.getPuzzle() - game.getPuzzle(), 2) +
+            Math.pow(dto.getMisc() - game.getMisc(), 2) +
+            Math.pow(dto.getShooter() - game.getShooter(), 2) +
+            Math.pow(dto.getSimulation() - game.getSimulation(), 2) +
+            Math.pow(dto.getAction() - game.getAction(), 2) +
+            Math.pow(dto.getFighting() - game.getFighting(), 2) +
+            Math.pow(dto.getAdventure() - game.getAdventure(), 2) +
+            Math.pow(dto.getStrategy() - game.getStrategy(), 2)
+        );
+        
+        // Retorna similaridade (quanto maior, mais similar)
+        return 1.0 / (1.0 + distancia);
+    }
+    
+    private String getDescricaoCluster(String cluster) {
+        return recomendacoes.containsKey(cluster) 
+            ? recomendacoes.get(cluster).getGrupo()
+            : "Cluster " + cluster;
+    }
+    
+    private String getTextoDescricao(String cluster) {
+        return recomendacoes.containsKey(cluster)
+            ? recomendacoes.get(cluster).getDescricao()
+            : "Jogos classificados no grupo " + cluster;
+    }
+    
+    private GameRecomendacao getFallbackRecomendacao(String cluster) {
         if (recomendacoes.containsKey(cluster)) {
             return recomendacoes.get(cluster);
         } else {
